@@ -1,4 +1,4 @@
 # GameTheory
-An Application of Game Theory to Biology
+An Game Theory Application to Biology
 
 
