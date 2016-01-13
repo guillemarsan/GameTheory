@@ -10,11 +10,12 @@ This problem is held in this repository. Firsty programmed in spanish in MATLAB 
 Este prolblema es tratado en este repository. Primero programado en castellano en MATLAB y ahora disponible en C++ en inglés, Una Aplicación de la Teoría de Juegos a la Biología define individuos con diferentes estrategias (strategies.h) en sus genes, los hace interactuar entre ellos, ganar un beneficio y reproducirse (functions.h) en función de ese beneficio. Un análisis dinámico del desarrollo de una población.
 
 
-Complete Research Project Paper in english will be uploaded very soon. Stay tuned!
+Complete Research Project Paper in english here: https://drive.google.com/open?id=0B82N6WKkjFEbRFFKb0RpVFl3ajg
 
+Código MATLAB en castellano: https://drive.google.com/open?id=0B82N6WKkjFEbRWVZWDM1emZZaFU
 
-Código MATLAB y Paper del Proyecto de Investigación completo en castellano aquí:
-https://drive.google.com/folderview?id=0B82N6WKkjFEbRWYxWVRWaUJuNjg&usp=sharing 
+Paper del Proyecto de Investigación completo en castellano aquí: https://drive.google.com/open?id=0B82N6WKkjFEbTk1zVUtnSE1ualk
+
 
 
 
