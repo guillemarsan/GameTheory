@@ -1,6 +1,7 @@
 
 #include "Types.h"
 
+//Each strategy is here defined. To know how does each one behave see the paper in README.txt.
 
 tPlayer aC(tPlayer oldplayer) {
 	tPlayer newplayer;

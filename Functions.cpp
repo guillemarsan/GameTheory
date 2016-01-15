@@ -5,7 +5,7 @@
 #include "Strategies.h"
 
 vector <vector <int>> scores(int rounds) {
-
+	//Calculates the score each player is going to get depending who they interact with.
 	vector <tPlayer> players(7);
 	vector <vector <int>> scores(6, vector<int>(6));
 	vector <tPlayer> result;
@@ -22,7 +22,9 @@ vector <vector <int>> scores(int rounds) {
 	for (int n = 0; n <= 5; ++n) {
 		for (int m = 0; m <= 5; ++m) {
 			for (int r = 1; r <= rounds; ++r) {
-				result = play(players[n], players[m]);
+				//Makes a matrix where, for example, the element in column 0 and row 3
+				// is the score it would get a player with strategy aC against tt2. 
+				result = play(players[n], players[m]); 
 				players[n] = result[0];
 				players[m] = result[1];
 			}
@@ -37,7 +39,8 @@ vector <vector <int>> scores(int rounds) {
 }
 
 vector <tPlayer> initialplayers(int aC, int aD, int tt, int t2, int et, int gt) {
-
+	//Initializes the players. How many of each is going to be on the first generation is changed
+	//by changing the variables. 
 
 	vector <tPlayer> players;
 	tPlayer p;
@@ -84,6 +87,8 @@ vector <tPlayer> initialplayers(int aC, int aD, int tt, int t2, int et, int gt) 
 
 void percentages(vector <tPlayer> & players, int r, vector <double> & percentageaC, vector <double> & percentageaD,
 	vector <double> & percentagett, vector <double> & percentaget2, vector <double> & percentageet, vector <double> & percentagegt) {
+	//Calulates the percentage that represents each strategy in the final population
+	
 	double counteraC = 0, counteraD = 0, countertt = 0, countert2 = 0, counteret = 0, countergt = 0;
 	int l = 0;
 	tpersonality type;
@@ -120,6 +125,8 @@ void percentages(vector <tPlayer> & players, int r, vector <double> & percentage
 
 void results(vector <double> & percentageaC, vector <double> & percentageaD,
 	vector <double> & percentagett, vector <double> & percentaget2, vector <double> & percentageet, vector <double> & percentagegt) {
+	//Calculates the average of the percentages and its standard deviation.
+	
 	double xaC = 0, saC = 0, xaD = 0, saD = 0, xtt = 0, stt = 0, xt2 = 0, st2 = 0, xet = 0, set = 0, xgt = 0, sgt = 0;
 	double sumx = 0.0, sums = 0.0;
 
@@ -171,6 +178,7 @@ void results(vector <double> & percentageaC, vector <double> & percentageaD,
 	sgt = sqrt(sums) / (percentagegt.size() - 1);
 	sums = 0;
 
+	//Writes the results in a .txt.
 	ofstream data;
 	data.open("results.txt");
 	data << " xaC = " << xaC << " xaD = " << xaD << " xtt = " << xtt << " xt2 = " << xt2 << " xet = " << xet << " xgt = " << xgt << "\n";
@@ -181,6 +189,8 @@ void results(vector <double> & percentageaC, vector <double> & percentageaD,
 
 
 vector <tPlayer> play(tPlayer a, tPlayer b) {
+	//Defines one round of the interaction
+
 	tPlayer A, B;
 	vector <tPlayer> newplayers(2);
 
@@ -204,7 +214,9 @@ vector <tPlayer> play(tPlayer a, tPlayer b) {
 
 	A.previous = B.movement;
 	B.previous = A.movement;
-
+	
+	//Here the utility each player gets can be changed in order to test another game
+	//besides Prisioner's Dilemma.
 	if (A.movement == "C" && B.movement == "C") {
 		A.score = A.score + 3;
 		B.score = B.score + 3;
@@ -229,6 +241,7 @@ vector <tPlayer> play(tPlayer a, tPlayer b) {
 }
 
 vector <tPlayer> tournament(vector <tPlayer> & players, vector <vector <int>> & score) {
+	//Makes the random matches of players and makes them play 10 rounds.
 	int l = players.size(), f = 0, g = 0;
 	vector <int> in;
 
@@ -256,19 +269,21 @@ vector <tPlayer> tournament(vector <tPlayer> & players, vector <vector <int>> & 
 }
 
 vector <tPlayer> reproduction(vector <tPlayer> & parents, int parameter) {
+	//Controls the reproduction of the individuals.
 	int birthsaux = 0, k = 0;
 	vector <tPlayer> sons;
 	tPlayer newson;
 	vector <double> births;
 
 	for (int a = 0; a < parents.size(); ++a) {
+		//Calculates how much offspring each player is going to have.
 		births.push_back(round(parents[a].score / parameter));
 	}
 
 	for (int a = 0; a < births.size(); ++a) {
 		birthsaux = births[a];
 		for (int n = 0; n < birthsaux; ++n) {
-
+			//Generates a new matrix with the offspring that will be the future players.
 			newson.previous = "I";
 			newson.score = 0;
 			newson.counter = 0;
